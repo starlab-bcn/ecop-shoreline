@@ -56,9 +56,9 @@ ancillary = {"scaled": img, "denoised": blur, "rawland": raw_land_mask}
 
 where:
 
-* Scaled: image after applying the intensity rescaling (byte numpy array)
-* Denoised: image after applying the denoising filter (byte numpy array)
-* Rawland: raw land mask before applying morphological operation (byte numpy array).
+* Scaled: image after applying the intensity rescaling (uint8 numpy array)
+* Denoised: image after applying the denoising filter (uint8 numpy array)
+* Rawland: raw land mask before applying morphological operation (uint8 numpy array).
 
 #### The Rawland images (one for each polarization) correspond to band 1 and band 2 in the second function:
  
