@@ -4,13 +4,11 @@ Shoreline delineation module developed in the framework of ECOPOTENTIAL H2020 pr
 # Shoreline detection module
 The shoreline detection algorithm has been implemented by Starlab in python v2.7 as a separate module of the whole chain of processing.  This allows us to provide such module for its integration in the ECOPOTENTIAL virtual laboratory. 
 
-## Libraries and functions
+## Dependencies 
+For an easy installation of the necessary libraries:
+
 ```sh
-import cv2
-import numpy
-from skimage import exopsure
-from scipy.misc import bytscale
-from scipy.ndimage.morphology import binary_fill_holes
+pip install -r requirements.txt
 ```
 
 ## Input
@@ -27,7 +25,7 @@ def waterbody(band, logarithmic = True, clipping = [5,98],  filter_kernel_size =
 
 where:
 
-* band: Sentinel-1 pre-processed image at VV or VH polarization
+* band: Sentinel-1 VV or VH polarization band, as float32 numpy array
 	
 The users can set up the parameters:
 	
@@ -48,9 +46,9 @@ The users can set up the parameters:
 ### waterbody output
 The output of the waterbody function are, for each polarization:
  
-* water mask
-* water edges image
-* ancillary data
+* water mask (uint8 numpy array)
+* water edges image (uint8 numpy array)
+* ancillary data 
 
 ```sh
 ancillary = {"scaled": img, "denoised": blur, "rawland": raw_land_mask}
@@ -58,11 +56,9 @@ ancillary = {"scaled": img, "denoised": blur, "rawland": raw_land_mask}
 
 where:
 
-* Scaled: image after applying the intensity rescaling
-* Denoised: image after applying the denoising filter
-* Rawland: raw land mask before applying morphological operation.
-
-All these outputs can be delivered as Geotiff images (to be implemented outside the module).
+* Scaled: image after applying the intensity rescaling (uint8 numpy array)
+* Denoised: image after applying the denoising filter (uint8 numpy array)
+* Rawland: raw land mask before applying morphological operation (uint8 numpy array).
 
 #### The Rawland images (one for each polarization) correspond to band 1 and band 2 in the second function:
  
@@ -79,15 +75,8 @@ The editable parameters are the same used in the first step. We keep the same va
 ### waterbodydp output
 The output of the waterbodydp function are:
 	
-* water mask
-* water edges image
+* water mask (uint8 numpy array)
+* water edges image (uint8 numpy array)
 	
-These images can be saved in GeoTiff format (to be implemented outside this module).
-	
-	
-
-
-
-
-
- 
+## Note
+Please note that the input and output of both waterbody and waterbodydp functions are numpy arrays which do not provide geographic information. A dedicated function attaching the geographic information should be made available in the virtual laboratory, and called at the end of the waterbody(dp) module processing.
