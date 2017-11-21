@@ -4,12 +4,11 @@ Shoreline delineation module developed in the framework of ECOPOTENTIAL H2020 pr
 # Shoreline detection module
 The shoreline detection algorithm has been implemented by Starlab in python v2.7 as a separate module of the whole chain of processing.  This allows us to provide such module for its integration in the ECOPOTENTIAL virtual laboratory. 
 
-## Libraries 
+## Dependencies 
+For an easy installation of the necessary libraries:
+
 ```sh
-pip install numpy
-pip install openCV
-pip install scipy
-pip install scikit-image
+pip install -r requirements.txt
 ```
 
 ## Input
